@@ -1,0 +1,1 @@
+def standaardprijs(afstandKM):
