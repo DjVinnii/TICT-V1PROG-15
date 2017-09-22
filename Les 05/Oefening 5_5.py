@@ -1,0 +1,8 @@
+infile = open('Voorbeeld5_5.txt', 'r')
+inhoud1 = infile.read()
+inhoud2 = inhoud1.split()
+inhoud3 = infile.readlines()
+infile.close()
+print(inhoud1)
+print(inhoud2)
+print(inhoud3)
