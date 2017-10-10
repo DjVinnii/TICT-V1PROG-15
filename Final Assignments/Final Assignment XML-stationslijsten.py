@@ -1,25 +1,10 @@
 import xmltodict
-
-def processXML(filename):
-    with open(filename) as myXMLFile:
-        filecontentstring = myXMLFile.read()
-        xmldictionary = xmltodict.parse(filecontentstring)
-        return xmldictionary
-
-stationsdict = processXML('stationslijst.xml')
-stations = stationsdict['Stations']['Station']
-
-print('Dit zijn de codes en de types van de {} stations: \n'.format(len(stations)))
-for station in stations:
-    print('{:4} - {}'.format(station['Code'], station['Type']))
-
+xmlfile = xmltodict.parse(open('stationslijst.xml').read())
+print('Dit zijn de codes en de types van de {} stations:'.format(len(xmlfile['Stations']['Station'])))
+for station in xmlfile['Stations']['Station']: print('{:4} - {}'.format(station['Code'], station['Type']))
 print('\nDit zijn alle stations met één of meer synoniemen:')
-for station in stations:
+for station in xmlfile['Stations']['Station']:
     if station['Synoniemen'] is not None:
-        synoniemen = station['Synoniemen']['Synoniem']
-        for synoniem in synoniemen:
-            print('{:4} - {}'.format(station['Code'], synoniem))
-
-print('\nDit is de lange naam van elk station:\n')
-for station in stations:
-    print('{:4} - {}'.format(station['Code'], station['Namen']['Lang']))
+        for synoniem in station['Synoniemen']['Synoniem']: print('{:4} - {}'.format(station['Code'], synoniem))
+print('\nDit is de lange naam van elk station:')
+for station in xmlfile['Stations']['Station']:print('{:4} - {}'.format(station['Code'], station['Namen']['Lang']))
