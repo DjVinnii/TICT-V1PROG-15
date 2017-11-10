@@ -1,3 +1,3 @@
 lijst = ["maandag", "dinsdag", "woensdag"]
 for woord in lijst:
-   print (woord[:2])
+   print(woord[:2])
